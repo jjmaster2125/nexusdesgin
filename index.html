@@ -139,6 +139,7 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
+            position: relative;
         }
         
         .logo {
@@ -150,6 +151,7 @@
             color: var(--accent);
             text-decoration: none;
             letter-spacing: -0.5px;
+            z-index: 1001;
         }
         
         .logo i {
@@ -266,6 +268,134 @@
             font-weight: bold;
         }
         
+        /* Hamburger Menu */
+        .hamburger-menu {
+            display: none;
+            flex-direction: column;
+            justify-content: space-between;
+            width: 30px;
+            height: 21px;
+            background: transparent;
+            border: none;
+            cursor: pointer;
+            z-index: 1001;
+        }
+        
+        .hamburger-menu span {
+            display: block;
+            height: 3px;
+            width: 100%;
+            background-color: var(--accent);
+            border-radius: 3px;
+            transition: all 0.3s ease;
+        }
+        
+        .hamburger-menu.active span:nth-child(1) {
+            transform: rotate(45deg) translate(6px, 6px);
+        }
+        
+        .hamburger-menu.active span:nth-child(2) {
+            opacity: 0;
+        }
+        
+        .hamburger-menu.active span:nth-child(3) {
+            transform: rotate(-45deg) translate(6px, -6px);
+        }
+        
+        /* Mobile Navigation Menu */
+        .mobile-nav {
+            position: fixed;
+            top: 0;
+            right: -100%;
+            width: 85%;
+            max-width: 350px;
+            height: 100vh;
+            background: rgba(10, 25, 47, 0.98);
+            backdrop-filter: blur(30px);
+            -webkit-backdrop-filter: blur(30px);
+            border-left: 1px solid rgba(100, 255, 218, 0.2);
+            box-shadow: -20px 0 60px rgba(0, 0, 0, 0.4);
+            z-index: 1000;
+            transition: right 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            padding: 2rem;
+            overflow-y: auto;
+            display: none;
+            flex-direction: column;
+        }
+        
+        .mobile-nav.active {
+            right: 0;
+        }
+        
+        .mobile-nav-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 2rem;
+            padding-bottom: 1rem;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        .close-mobile-nav {
+            background: none;
+            border: none;
+            color: var(--gray);
+            font-size: 1.5rem;
+            cursor: pointer;
+            transition: color 0.3s;
+        }
+        
+        .close-mobile-nav:hover {
+            color: var(--accent);
+        }
+        
+        .mobile-nav-links {
+            list-style: none;
+            margin-bottom: 2rem;
+        }
+        
+        .mobile-nav-links li {
+            margin-bottom: 1rem;
+        }
+        
+        .mobile-nav-links a {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            color: var(--light);
+            text-decoration: none;
+            font-size: 1.1rem;
+            padding: 0.8rem 1rem;
+            border-radius: 8px;
+            transition: all 0.3s;
+        }
+        
+        .mobile-nav-links a:hover {
+            background: rgba(100, 255, 218, 0.1);
+            color: var(--accent);
+            transform: translateX(5px);
+        }
+        
+        .mobile-nav-links i {
+            width: 20px;
+            text-align: center;
+        }
+        
+        .mobile-cart-btn {
+            width: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            background: rgba(100, 255, 218, 0.1);
+            border: 1px solid rgba(100, 255, 218, 0.3);
+            border-radius: 8px;
+            padding: 1rem 1.5rem;
+            color: var(--accent);
+            text-decoration: none;
+            font-weight: 600;
+            margin-top: 1rem;
+        }
+        
         /* Cart Sidebar */
         .cart-sidebar {
             position: fixed;
@@ -308,6 +438,55 @@
         
         .close-cart:hover {
             color: var(--accent);
+        }
+        
+        .cart-actions {
+            display: flex;
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+        }
+        
+        .clear-cart-btn {
+            background: rgba(239, 71, 111, 0.1);
+            border: 1px solid rgba(239, 71, 111, 0.3);
+            color: var(--danger);
+            border-radius: 8px;
+            padding: 0.7rem 1.2rem;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.3s;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            flex: 1;
+            justify-content: center;
+        }
+        
+        .clear-cart-btn:hover {
+            background: rgba(239, 71, 111, 0.2);
+            transform: translateY(-2px);
+        }
+        
+        .continue-shopping-btn {
+            background: rgba(100, 255, 218, 0.1);
+            border: 1px solid rgba(100, 255, 218, 0.3);
+            color: var(--accent);
+            border-radius: 8px;
+            padding: 0.7rem 1.2rem;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.3s;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            flex: 1;
+            justify-content: center;
+            text-decoration: none;
+        }
+        
+        .continue-shopping-btn:hover {
+            background: rgba(100, 255, 218, 0.2);
+            transform: translateY(-2px);
         }
         
         .cart-items {
@@ -418,6 +597,27 @@
             margin: 0 auto 2.5rem;
             color: var(--gray);
             text-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+        }
+        
+        .hero-btn {
+            display: inline-block;
+            background: linear-gradient(135deg, var(--accent), var(--accent-dark));
+            color: var(--primary);
+            padding: 1.2rem 2.5rem;
+            border-radius: 12px;
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 1.1rem;
+            transition: all 0.3s;
+            border: none;
+            cursor: pointer;
+            box-shadow: 0 6px 20px rgba(100, 255, 218, 0.3);
+            margin-top: 1rem;
+        }
+        
+        .hero-btn:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 12px 25px rgba(100, 255, 218, 0.4);
         }
         
         /* Psychology Elements */
@@ -895,17 +1095,34 @@
                 gap: 1.5rem;
             }
             
-            .desktop-nav ul {
-                gap: 1rem;
+            /* Hide desktop nav on mobile */
+            .desktop-nav {
+                display: none;
             }
             
-            .desktop-nav a {
-                font-size: 0.9rem;
+            /* Show hamburger menu on mobile */
+            .hamburger-menu {
+                display: flex;
+            }
+            
+            /* Show mobile nav when active */
+            .mobile-nav {
+                display: flex;
+            }
+            
+            .header-content {
+                justify-content: space-between;
             }
             
             .quote-btn, .cart-btn {
                 padding: 0.6rem 1rem;
                 font-size: 0.85rem;
+            }
+        }
+        
+        @media (min-width: 769px) {
+            .mobile-nav {
+                display: none !important;
             }
         }
         
@@ -923,18 +1140,8 @@
             }
             
             .header-content {
-                flex-direction: column;
+                flex-direction: row;
                 gap: 1rem;
-            }
-            
-            .desktop-nav {
-                width: 100%;
-                justify-content: center;
-            }
-            
-            .desktop-nav ul {
-                flex-wrap: wrap;
-                justify-content: center;
             }
         }
         
@@ -976,6 +1183,42 @@
             align-items: center;
             gap: 0.5rem;
         }
+        
+        /* Notification */
+        .notification {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background: var(--secondary);
+            color: white;
+            padding: 1rem 1.5rem;
+            border-radius: 10px;
+            border-left: 4px solid var(--accent);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+            z-index: 3000;
+            max-width: 300px;
+            animation: slideIn 0.3s ease;
+        }
+        
+        @keyframes slideIn {
+            from { transform: translateX(100%); opacity: 0; }
+            to { transform: translateX(0); opacity: 1; }
+        }
+        
+        /* Form Success Message */
+        .form-success {
+            background: linear-gradient(135deg, rgba(100, 255, 218, 0.1), rgba(82, 209, 178, 0.1));
+            border: 1px solid var(--accent);
+            border-radius: 12px;
+            padding: 2rem;
+            text-align: center;
+            margin: 2rem 0;
+            display: none;
+        }
+        
+        .form-success.active {
+            display: block;
+        }
     </style>
 </head>
 <body>
@@ -1002,8 +1245,38 @@
                     <li><a href="#order" class="quote-btn"><i class="fas fa-quote-left"></i> Get a Quote</a></li>
                 </ul>
             </nav>
+            
+            <!-- Hamburger Menu Button -->
+            <button class="hamburger-menu" id="hamburger-toggle">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
         </div>
     </header>
+
+    <!-- Mobile Navigation Menu -->
+    <div class="mobile-nav" id="mobile-nav">
+        <div class="mobile-nav-header">
+            <h3>Menu</h3>
+            <button class="close-mobile-nav" id="close-mobile-nav">&times;</button>
+        </div>
+        
+        <ul class="mobile-nav-links">
+            <li><a href="#pricing"><i class="fas fa-tags"></i> Services</a></li>
+            <li><a href="#process"><i class="fas fa-sitemap"></i> Process</a></li>
+            <li><a href="#order"><i class="fas fa-shopping-cart"></i> Order Form</a></li>
+            <li><a href="#order"><i class="fas fa-quote-left"></i> Get a Quote</a></li>
+        </ul>
+        
+        <a href="#" class="mobile-cart-btn" id="mobile-cart-toggle">
+            <span>
+                <i class="fas fa-shopping-cart"></i>
+                View Cart
+            </span>
+            <span class="cart-count">0</span>
+        </a>
+    </div>
 
     <!-- Cart Sidebar -->
     <div class="cart-sidebar" id="cart-sidebar">
@@ -1012,18 +1285,29 @@
             <button class="close-cart" id="close-cart">&times;</button>
         </div>
         
+        <div class="cart-actions">
+            <button class="clear-cart-btn" id="clear-cart-btn">
+                <i class="fas fa-trash"></i>
+                Clear Cart
+            </button>
+            <a href="#pricing" class="continue-shopping-btn" id="continue-shopping">
+                <i class="fas fa-plus"></i>
+                Add More
+            </a>
+        </div>
+        
         <div class="cart-items" id="cart-items">
             <!-- Cart items will be added here dynamically -->
         </div>
         
         <div class="urgency-options">
-            <h4>Delivery Speed <span class="scarcity-badge">Limited Slots</span></h4>
+            <h4>Selected Delivery Speed <span class="scarcity-badge">Limited Slots</span></h4>
             <div class="urgency-option" data-speed="standard" data-price="0">
                 <span>Standard (1-2 weeks) - FREE</span>
                 <span>$0</span>
             </div>
             <div class="urgency-option" data-speed="fast" data-price="50">
-                <span>Fast (5-7 days) - $50</span>
+                <span>Fast (3-7 days) - $50</span>
                 <span>$50</span>
             </div>
             <div class="urgency-option" data-speed="urgent" data-price="75">
@@ -1059,7 +1343,7 @@
         <div class="container">
             <h1>Elite Digital Solutions That Convert Visitors Into Clients</h1>
             <p>Professionally crafted websites & logos designed using advanced conversion psychology. 98% of our clients see increased leads within 30 days.</p>
-            <a href="#order" class="btn add-to-cart" style="max-width: 300px; margin: 0 auto;">Get a Quote Now</a>
+            <a href="#order" class="hero-btn">Get a Quote Now</a>
             
             <div class="social-proof">
                 <div class="proof-item">
@@ -1092,7 +1376,7 @@
         </div>
     </div>
 
-    <!-- Order Form - MOVED TO TOP -->
+    <!-- Order Form -->
     <section class="order-form-section" id="order">
         <div class="container">
             <h2 class="section-title">Complete Your Project Order</h2>
@@ -1108,7 +1392,14 @@
                     </div>
                 </div>
                 
-                <form id="project-form" action="https://formspree.io/f/YOUR_FORM_ID" method="POST">
+                <!-- Form Success Message -->
+                <div class="form-success" id="form-success">
+                    <i class="fas fa-check-circle" style="font-size: 3rem; color: var(--accent); margin-bottom: 1rem;"></i>
+                    <h3>Thank You!</h3>
+                    <p>Your project request has been submitted successfully. We'll contact you within 2 hours.</p>
+                </div>
+                
+                <form id="project-form" action="https://formspree.io/f/xanrvlpp" method="POST">
                     <div class="form-row">
                         <div class="form-group">
                             <label for="name"><i class="fas fa-user"></i> Full Name *</label>
@@ -1200,11 +1491,11 @@
                         <li><i class="fas fa-check"></i> SEO-optimized structure</li>
                         <li><i class="fas fa-check"></i> Contact form + Advanced features</li>
                         <li><i class="fas fa-check"></i> E-commerce ready</li>
-                        <li><i class="fas fa-check"></i> 3 months free support</li>
+                        <li><i class="fas fa-check"></i> One week free support</li>
                     </ul>
                     <div class="rush-delivery">
                         <h4><i class="fas fa-bolt"></i> RUSH DELIVERY AVAILABLE</h4>
-                        <p>Add $50 for 5-7 days or $75 for 3-4 days delivery</p>
+                        <p>Add $50 for 3-7 days or $75 for 3-4 days delivery</p>
                     </div>
                     <button class="add-to-cart" data-id="website" data-name="Unlimited Website Package" data-price="150">Add to Cart - $150</button>
                 </div>
@@ -1331,9 +1622,16 @@
         const urgencyInput = document.getElementById('urgency');
         const cartDataInput = document.getElementById('cart-data');
         const totalPriceInput = document.getElementById('total-price');
+        const clearCartBtn = document.getElementById('clear-cart-btn');
+        const hamburgerToggle = document.getElementById('hamburger-toggle');
+        const mobileNav = document.getElementById('mobile-nav');
+        const closeMobileNav = document.getElementById('close-mobile-nav');
+        const mobileCartToggle = document.getElementById('mobile-cart-toggle');
+        const formSuccess = document.getElementById('form-success');
+        const projectForm = document.getElementById('project-form');
 
-        // Add to Cart Buttons
-        document.querySelectorAll('.add-to-cart').forEach(button => {
+        // Add to Cart Buttons - Only for pricing cards
+        document.querySelectorAll('.pricing-card .add-to-cart').forEach(button => {
             button.addEventListener('click', function() {
                 const id = this.dataset.id;
                 const name = this.dataset.name;
@@ -1342,6 +1640,8 @@
                 addToCart(id, name, price);
                 updateCart();
                 cartSidebar.classList.add('active');
+                mobileNav.classList.remove('active');
+                hamburgerToggle.classList.remove('active');
             });
         });
 
@@ -1359,6 +1659,41 @@
             });
         });
 
+        // Clear Cart Button
+        clearCartBtn.addEventListener('click', function() {
+            if (cart.length === 0) {
+                alert('Your cart is already empty!');
+                return;
+            }
+            
+            if (confirm('Are you sure you want to clear your cart? This cannot be undone.')) {
+                cart = [];
+                updateCart();
+                alert('Cart cleared successfully!');
+            }
+        });
+
+        // Hamburger Menu Toggle
+        hamburgerToggle.addEventListener('click', function() {
+            this.classList.toggle('active');
+            mobileNav.classList.toggle('active');
+            cartSidebar.classList.remove('active');
+        });
+
+        // Close Mobile Nav
+        closeMobileNav.addEventListener('click', function() {
+            mobileNav.classList.remove('active');
+            hamburgerToggle.classList.remove('active');
+        });
+
+        // Mobile Cart Toggle
+        mobileCartToggle.addEventListener('click', function(e) {
+            e.preventDefault();
+            cartSidebar.classList.add('active');
+            mobileNav.classList.remove('active');
+            hamburgerToggle.classList.remove('active');
+        });
+
         // Add Item to Cart
         function addToCart(id, name, price) {
             const existingItem = cart.find(item => item.id === id);
@@ -1373,12 +1708,16 @@
                     quantity: 1
                 });
             }
+            
+            // Show confirmation
+            showNotification(`${name} added to cart!`);
         }
 
         // Remove Item from Cart
         function removeFromCart(id) {
             cart = cart.filter(item => item.id !== id);
             updateCart();
+            showNotification('Item removed from cart!');
         }
 
         // Update Cart Display
@@ -1387,22 +1726,26 @@
             cartItems.innerHTML = '';
             let subtotal = 0;
             
-            cart.forEach(item => {
-                subtotal += item.price * item.quantity;
-                
-                const itemElement = document.createElement('div');
-                itemElement.className = 'cart-item';
-                itemElement.innerHTML = `
-                    <div class="cart-item-header">
-                        <div>
-                            <strong>${item.name}</strong>
-                            <div>$${item.price} × ${item.quantity}</div>
+            if (cart.length === 0) {
+                cartItems.innerHTML = '<div class="cart-empty" style="text-align: center; padding: 2rem; color: var(--gray);"><i class="fas fa-shopping-cart fa-2x" style="margin-bottom: 1rem;"></i><p>Your cart is empty</p></div>';
+            } else {
+                cart.forEach(item => {
+                    subtotal += item.price * item.quantity;
+                    
+                    const itemElement = document.createElement('div');
+                    itemElement.className = 'cart-item';
+                    itemElement.innerHTML = `
+                        <div class="cart-item-header">
+                            <div>
+                                <strong>${item.name}</strong>
+                                <div>$${item.price} × ${item.quantity} = $${item.price * item.quantity}</div>
+                            </div>
+                            <button class="remove-item" onclick="removeFromCart('${item.id}')"><i class="fas fa-times"></i></button>
                         </div>
-                        <button class="remove-item" onclick="removeFromCart('${item.id}')">&times;</button>
-                    </div>
-                `;
-                cartItems.appendChild(itemElement);
-            });
+                    `;
+                    cartItems.appendChild(itemElement);
+                });
+            }
             
             // Update counts and totals
             const itemCount = cart.reduce((sum, item) => sum + item.quantity, 0);
@@ -1428,9 +1771,9 @@
                 return;
             }
             
-            let summaryHTML = '<ul>';
+            let summaryHTML = '<ul style="list-style: none; padding-left: 0;">';
             cart.forEach(item => {
-                summaryHTML += `<li>${item.name} × ${item.quantity} - $${item.price * item.quantity}</li>`;
+                summaryHTML += `<li style="margin-bottom: 0.5rem; padding: 0.5rem; background: rgba(255,255,255,0.05); border-radius: 5px;">${item.name} × ${item.quantity} - $${item.price * item.quantity}</li>`;
             });
             summaryHTML += '</ul>';
             
@@ -1441,7 +1784,7 @@
                     urgencyText = 'Standard (1-2 weeks)';
                     break;
                 case 'fast':
-                    urgencyText = 'Fast (5-7 days) - $50';
+                    urgencyText = 'Fast (3-7 days) - $50';
                     break;
                 case 'urgent':
                     urgencyText = 'Urgent (3-4 days) - $75';
@@ -1464,6 +1807,8 @@
         cartToggle.addEventListener('click', function(e) {
             e.preventDefault();
             cartSidebar.classList.add('active');
+            mobileNav.classList.remove('active');
+            hamburgerToggle.classList.remove('active');
         });
 
         closeCart.addEventListener('click', function() {
@@ -1472,22 +1817,83 @@
 
         // Close cart when clicking outside
         document.addEventListener('click', function(e) {
-            if (!cartSidebar.contains(e.target) && !cartToggle.contains(e.target)) {
+            if (!cartSidebar.contains(e.target) && !cartToggle.contains(e.target) && !mobileCartToggle.contains(e.target)) {
                 cartSidebar.classList.remove('active');
             }
         });
 
         // Form Submission
-        document.getElementById('project-form').addEventListener('submit', function(e) {
+        projectForm.addEventListener('submit', async function(e) {
+            e.preventDefault();
+            
             if (cart.length === 0) {
-                e.preventDefault();
                 alert('Please add items to your cart before submitting.');
                 return;
             }
             
-            // Show confirmation
-            alert('Thank you! Your project request has been submitted. We will contact you within 2 hours.');
+            // Show loading state
+            const submitBtn = this.querySelector('.submit-btn');
+            const originalText = submitBtn.innerHTML;
+            submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Sending...';
+            submitBtn.disabled = true;
+            
+            try {
+                // Submit form data to Formspree
+                const formData = new FormData(this);
+                const response = await fetch(this.action, {
+                    method: 'POST',
+                    body: formData,
+                    headers: {
+                        'Accept': 'application/json'
+                    }
+                });
+                
+                if (response.ok) {
+                    // Show success message
+                    formSuccess.classList.add('active');
+                    projectForm.style.display = 'none';
+                    
+                    // Clear cart
+                    cart = [];
+                    updateCart();
+                    
+                    // Show notification
+                    showNotification('Order submitted successfully! We will contact you soon.');
+                } else {
+                    throw new Error('Form submission failed');
+                }
+            } catch (error) {
+                alert('There was an error submitting your form. Please try again or contact us directly.');
+                submitBtn.innerHTML = originalText;
+                submitBtn.disabled = false;
+            }
         });
+
+        // Show Notification
+        function showNotification(message) {
+            // Remove existing notification if any
+            const existingNotification = document.querySelector('.notification');
+            if (existingNotification) {
+                existingNotification.remove();
+            }
+            
+            // Create notification
+            const notification = document.createElement('div');
+            notification.className = 'notification';
+            notification.innerHTML = `
+                <div>
+                    <i class="fas fa-check-circle" style="color: var(--accent); margin-right: 10px;"></i>
+                    ${message}
+                </div>
+            `;
+            
+            document.body.appendChild(notification);
+            
+            // Remove after 3 seconds
+            setTimeout(() => {
+                notification.remove();
+            }, 3000);
+        }
 
         // Initialize
         document.addEventListener('DOMContentLoaded', function() {
@@ -1508,10 +1914,22 @@
                             behavior: 'smooth'
                         });
                         
-                        // Close cart if open
+                        // Close cart and mobile nav if open
                         cartSidebar.classList.remove('active');
+                        mobileNav.classList.remove('active');
+                        hamburgerToggle.classList.remove('active');
                     }
                 });
+            });
+            
+            // Close menus when clicking outside on mobile
+            document.addEventListener('click', function(e) {
+                if (window.innerWidth <= 768) {
+                    if (!mobileNav.contains(e.target) && !hamburgerToggle.contains(e.target) && mobileNav.classList.contains('active')) {
+                        mobileNav.classList.remove('active');
+                        hamburgerToggle.classList.remove('active');
+                    }
+                }
             });
         });
 
